@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Free Skins Generator</title>
+  <style>
+    /* ====== Global ====== */
+    body {
+      background-color: #111;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+    }
+    h1 {
+      font-size: 3em;
+      color: #00ff00;
+      margin-top: 40px;
+    }
+    p { margin: 0 0 10px 0; }
+
+    /* ====== Skins grid ====== */
+    .skins {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 20px;
+      width: 80%;
+      max-width: 900px;
+      margin: 40px auto;          /* centers the whole list */
+      justify-content: center;    /* centers the grid items when there is free space */
+    }
+    .skin {
+      background-color: #222;
+      border-radius: 10px;
+      padding: 10px;
+      cursor: pointer;
+      transition: transform 0.2s, background-color 0.2s;
+      text-align: center;
+    }
+    .skin:hover {
+      transform: scale(1.05);
+      background-color: #333;
+    }
+    .skin img {
+      width: 100%;
+      border-radius: 10px;
+      display: block;
+      margin: 0 auto;
+    }
+    .skin p { margin-top: 8px; }
+
+    /* ====== Form & Result ====== */
+    .user-form {
+      margin: 30px auto;
+    }
+    #usernameInput {
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 6px;
+      border: none;
+      width: 250px;
+    }
+    #generateBtn {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 24px;
+      font-size: 18px;
+      background-color: #007bff;
+      border: none;
+      border-radius: 8px;
+      color: #fff;
+      cursor: pointer;
+    }
+    #result {
+      margin-top: 30px;
+      font-size: 24px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎮 Free Skins Generator</h1>
+  <p>Choose a skin and enter your Fortnite name </p>
+    <p style="font-family: Arial, sans-serif; font-size: 16px; color: #0000;">
+  The chances that this will work are 50% successful.
+</p>
+
+
+  <div class="skins" id="skinsContainer">
+    <!-- === Example skins (replace with your own images) === -->
+    <div class="skin" onclick="selectSkin('Black Night', 'images/kylo.png')">
+      <img src="balck.png" alt="Black Night">
+      <p>Black Night</p>
+    </div>
+    <div class="skin" onclick="selectSkin('The Reaper', 'images/han.png')">
+      <img src="skin3.png" alt="The Reaper">
+      <p>The Reaper</p>
+    </div>
+    <div class="skin" onclick="selectSkin('IKonik', 'images/leia.png')">
+      <img src="Ikonk.png" alt="IKonik">
+      <p>IKonik</p>
+    </div>
+    <!-- === Additional skins added === -->
+    <div class="skin" onclick="selectSkin('Wonder', 'images/vader.png')">
+      <img src="skin2.png" alt="Wonder">
+      <p>Wonder</p>
+    </div>
+    <div class="skin" onclick="selectSkin('Mint Axe', 'images/luke.png')">
+      <img src="skin6.png" alt="Mint Axe">
+      <p>Mint Axe</p>
+    </div>
+  </div> <!-- end .skins -->
+
+  <div class="user-form">
+    <input type="text" id="usernameInput" placeholder="Enter your Fortnite username">
+    <br>
+    <button id="generateBtn" onclick="generateSkin()">Generate</button>
+  </div>
+
+  <div id="result"></div>
+
+  <script>
+    let selectedSkin = null;
+    let selectedSkinImage = null;
+
+    function selectSkin(name, imgPath) {
+      selectedSkin     = name;
+      selectedSkinImage = imgPath;
+
+      // highlight the selected skin
+      document.querySelectorAll('.skin').forEach(el => el.style.outline = 'none');
+      event.currentTarget.style.outline = '2px solid #00ff00';
+    }
+
+    function generateSkin() {
+      const username  = document.getElementById('usernameInput').value.trim();
+      const resultDiv = document.getElementById('result');
+
+      if (!selectedSkin || username === "") {
+        resultDiv.innerHTML = "<p style='color:red;'>Please select a skin and enter your name.</p>";
+        return;
+      }
+
+      resultDiv.innerHTML = `
+        <h2>🎉 ${username} got the ${selectedSkin} skin!</h2>
+        
+        
+      `;
+    }
+  </script>
+</body>
+</html>
